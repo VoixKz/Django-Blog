@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Посты</title>
+</head>
+<body style="padding: 50px;">
+
+    <div class="create_post" style="position: absolute; right: 50px;">
+        <h1>Создать пост</h1> 
+        <a href="{% url 'create_post' %}">Создать пост</a>
+    </div>
+
+    <h1>Жанры:</h1>
+    {% for genre in genres %}
+        <a href="?genre_id={{ genre.id }}">{{ genre.name }}</a> <br>
+    {% endfor %}
+    <a href="{% url 'post_list' %}">Все посты</a>
+
+
+    <h1>Посты</h1>
+    {% for post in posts%}
+
+        <div class="post" onclick="location.href='{% url 'post' post.id %}'">
+            <h2>{{ post.title }}</h2>
+            <p><i>{{ post.created_at }}</i></p>
+            <p>{{ post.content|truncatechars:250|linebreaksbr }}</p>
+            <hr>
+        </div>
+
+    {% endfor %}
+
+</body>
+</html>

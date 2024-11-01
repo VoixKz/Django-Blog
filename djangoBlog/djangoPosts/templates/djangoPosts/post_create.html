@@ -1,0 +1,17 @@
+<h1>Создание поста</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="title">Заголовок:</label>
+    <input type="text" name="title" placeholder="Заголовок" required><br><br>
+    <label for="content">Содержание:</label><br>
+    <textarea name="content" placeholder="Содержание" required style="max-width: 90vw; min-width: 10vw; min-height: 10vh"></textarea><br><br>
+    <label for="image">Изображение:</label>
+    <input type="file" name="image"><br><br>
+    <label for="genre">Жанр:</label>
+    <select name="genre" id="genre">
+        {% for genre in genres %}
+            <option value="{{ genre.id }}">{{ genre.name }}</option>
+        {% endfor %}
+    </select><br><br>
+    <button type="submit">Создать</button>
+</form>
